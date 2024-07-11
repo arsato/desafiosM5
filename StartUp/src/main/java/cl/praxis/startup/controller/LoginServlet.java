@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         UserDTO user = userService.verifyUser(email);
-        System.out.println(user);
         if(user == null){
             request.setAttribute("message", "mail not found");
             request.getRequestDispatcher("login.jsp").forward(request, response);
