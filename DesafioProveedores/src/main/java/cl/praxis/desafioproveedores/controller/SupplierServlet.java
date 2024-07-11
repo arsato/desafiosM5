@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("")
+@WebServlet("/proveedores")
 public class SupplierServlet extends HttpServlet {
 
     private SupplierService supplierService;
@@ -32,11 +32,17 @@ public class SupplierServlet extends HttpServlet {
         }
         try {
             switch (action) {
-                case "new":
-                    showNewForm(request, response);
+                case "edit":
+                    showEditForm(request, response);
                     break;
                 case "insert":
                     insertSupplier(request, response);
+                    break;
+                case "update":
+                    updateSupplier(request, response);
+                    break;
+                case "delete":
+                    deleteSupplier(request, response);
                     break;
                 default:
                     listSuppliers(request, response);
@@ -46,6 +52,7 @@ public class SupplierServlet extends HttpServlet {
             throw new ServletException(ex);
         }
     }
+
     // Método doPost para manejar las solicitudes POST
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,12 +64,6 @@ public class SupplierServlet extends HttpServlet {
         List<SupplierDTO> suppliersList = supplierService.selectAllSuppliers();
         request.setAttribute("listSuppliers", suppliersList);
         request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
-
-    // Método para mostrar el formulario para un nuevo usuario
-    private void showNewForm(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getRequestDispatcher("supplier-form.jsp").forward(request, response);
     }
 
     // Método para insertar un nuevo usuario y redirigir a la lista de usuarios
@@ -77,6 +78,36 @@ public class SupplierServlet extends HttpServlet {
         int contactPhone = Integer.parseInt(request.getParameter("contactPhone"));
         SupplierDTO newSupplier = new SupplierDTO(name, rut, address, email, phone, contactName, contactPhone);
         supplierService.insertSupplier(newSupplier);
+        response.sendRedirect("proveedores");
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        SupplierDTO existingSupplier = supplierService.selectSupplierById(id);
+        request.setAttribute("supplier", existingSupplier);
+        request.getRequestDispatcher("edicion.jsp").forward(request, response);
+    }
+
+    private void updateSupplier(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String rut = request.getParameter("rut");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        int phone = Integer.parseInt(request.getParameter("phone"));
+        String contactName = request.getParameter("contactName");
+        int contactPhone = Integer.parseInt(request.getParameter("contactPhone"));
+        SupplierDTO supplier = new SupplierDTO(id, name, rut, address, email, phone, contactName, contactPhone);
+        supplierService.updateSupplier(supplier);
+        response.sendRedirect("proveedores");
+    }
+
+    private void deleteSupplier(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        supplierService.deleteSupplier(id);
         response.sendRedirect("proveedores");
     }
 
