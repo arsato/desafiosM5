@@ -15,5 +15,6 @@
 </head>
 <body>
 <h1>Bienvenido ${user.name}!</h1>
+<p>Su correo es ${user.email}</p>
 </body>
 </html>
