@@ -14,6 +14,12 @@ public class SupplierServiceimpl implements SupplierService {
     public SupplierServiceimpl() {
         this.supplierDAO = new SupplierDAOimpl();
     }
+
+    @Override
+    public SupplierDTO selectSupplierById(int id) {
+        return supplierDAO.selectSupplierById(id);
+    }
+
     @Override
     public List<SupplierDTO> selectAllSuppliers() {
         return supplierDAO.selectAllSuppliers();
@@ -22,5 +28,15 @@ public class SupplierServiceimpl implements SupplierService {
     @Override
     public SupplierDTO insertSupplier(SupplierDTO supplier) {
         return supplierDAO.insertSupplier(supplier);
+    }
+
+    @Override
+    public SupplierDTO updateSupplier(SupplierDTO supplier) {
+        return supplierDAO.updateSupplier(supplier);
+    }
+
+    @Override
+    public boolean deleteSupplier(int id) {
+        return supplierDAO.deleteSupplier(id);
     }
 }
