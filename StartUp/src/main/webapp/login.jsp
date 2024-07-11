@@ -17,14 +17,22 @@
 <body>
 <main class="container">
     <article>
-        <c:if test="${message != null}">
-            <h3 align="center">${message == "wrong password" ? "Contraseña Incorrecta" : "Correo inválido"}</h3>
-        </c:if>
-    <form action="login" method="post">
-        <input value="ariel@mail.com" type="email" id="email" name="email" placeholder="Email" autocomplete="email" aria-invalid="${message == 'mail not found' ? 'true' : ''}" required>
-        <input type="password" id="password" name="password" placeholder="Contraseña" aria-invalid="${message == 'wrong password' ? 'true' : ''}" required>
-        <input type="submit" value="Iniciar Sesión">
-    </form>
+        <h2 align="center">Inicio de sesión</h2>
+        <form action="login" method="post">
+            <input value="ariel@mail.com" type="email" id="email" name="email" placeholder="Email" autocomplete="email"
+                   aria-invalid="${message == 'mail not found' ? 'true' : ''}" required>
+            <c:if test="${message == 'mail not found'}">
+                <small>¡Correo inválido!</small>
+                <hr>
+            </c:if>
+            <input type="password" id="password" name="password" placeholder="Contraseña"
+                   aria-invalid="${message == 'wrong password' ? 'true' : ''}" required>
+            <c:if test="${message == 'wrong password'}">
+                <small>¡Contraseña Incorrecta!</small>
+                <hr>
+            </c:if>
+            <input type="submit" value="Iniciar Sesión">
+        </form>
     </article>
 </main>
 </body>

@@ -16,12 +16,15 @@
 </head>
 <body>
 <main class="container">
-    <c:if test="${message != null}">
-            <h3 align="center">${message}</h3>
-    </c:if>
+    <article>
+        <h2 align="center">Registro de nuevo usuario</h2>
     <form action="register" method="post">
         <label for="email">Correo</label>
         <input value="ariel@mail.com" type="email" id="email" name="email" aria-invalid="${message != null ? 'true' : ''}" required>
+        <c:if test="${message != null}">
+            <small>${message}</small>
+            <hr>
+        </c:if>
         <label for="password">Contraseña</label>
         <input value="123" type="password" id="password" name="password" required>
         <label for="name">Nombre</label>
@@ -32,6 +35,7 @@
         <input value="35" type="number" id="weight" name="weight" required>
         <input type="submit" value="Registrar">
     </form>
+    </article>
 </main>
 </body>
 </html>
