@@ -1,8 +1,11 @@
-package cl.praxis.startupv2.service;
+package cl.praxis.startupv2.service.impl;
 
 import cl.praxis.startupv2.dao.IUserDAO;
-import cl.praxis.startupv2.dao.UserDAOImpl;
+import cl.praxis.startupv2.dao.impl.UserDAOImpl;
 import cl.praxis.startupv2.model.UserDTO;
+import cl.praxis.startupv2.service.IUserService;
+
+import java.util.List;
 
 public class UserServiceImpl implements IUserService {
 
@@ -26,5 +29,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserDTO verifyUser(String email) {
         return userDAO.getUserByEmail(email);
+    }
+
+    @Override
+    public List<UserDTO> getAllUsersData() {
+       return userDAO.getAllUsersData();
     }
 }

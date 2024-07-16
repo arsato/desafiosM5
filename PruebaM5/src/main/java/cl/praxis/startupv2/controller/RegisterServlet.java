@@ -1,8 +1,13 @@
 package cl.praxis.startupv2.controller;
 
+import cl.praxis.startupv2.model.AddressDTO;
 import cl.praxis.startupv2.model.UserDTO;
+import cl.praxis.startupv2.model.UsersRolesDTO;
+import cl.praxis.startupv2.service.IUsersRolesService;
+import cl.praxis.startupv2.service.impl.AddressServiceImpl;
+import cl.praxis.startupv2.service.IAddressService;
 import cl.praxis.startupv2.service.IUserService;
-import cl.praxis.startupv2.service.UserServiceImpl;
+import cl.praxis.startupv2.service.impl.UserServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,14 +21,19 @@ import java.sql.Timestamp;
 public class RegisterServlet extends HttpServlet {
 
     private IUserService userService;
+    private IAddressService addressService;
+    private IUsersRolesService usersRolesService;
 
     public void init() {
         userService = new UserServiceImpl();
+        addressService = new AddressServiceImpl();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Timestamp now = new Timestamp(System.currentTimeMillis());
         UserDTO user = new UserDTO();
+        AddressDTO address = new AddressDTO();
+        UsersRolesDTO usersRoles = new UsersRolesDTO();
         user.setEmail(request.getParameter("email"));
         user.setName(request.getParameter("name"));
         user.setNick(request.getParameter("nick"));
@@ -32,6 +42,14 @@ public class RegisterServlet extends HttpServlet {
         user.setCreatedAt(now);
         user.setUpdatedAt(now);
         UserDTO newUser = userService.createUser(user);
+        address.setAddressName(request.getParameter("addressName"));
+        address.setAddressNumber(request.getParameter("addressNumber"));
+        address.setUserId(newUser.getId());
+        addressService.saveAddress(address);
+        usersRoles.setUserId(newUser.getId());
+        usersRoles.setRoleId(2);
+        usersRolesService.addUserToRole(usersRoles);
+
         if (newUser == null) {
             request.setAttribute("message", "Correo electrónico ya registrado");
             request.getRequestDispatcher("registro.jsp").forward(request, response);

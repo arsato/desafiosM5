@@ -8,7 +8,7 @@ public interface IUserDAO {
 
     public UserDTO getUserById(int id);
     public UserDTO getUserByEmail(String email);
-    public List<UserDTO> getAllUsers();
+    public List<UserDTO> getAllUsersData();
     public UserDTO createUser(UserDTO user);
     public boolean updateUser(UserDTO user);
     public boolean deleteUser(int id);
