@@ -4,5 +4,5 @@ import cl.praxis.startupv2.model.AddressDTO;
 
 public interface IAddressService {
 
-    public AddressDTO saveAddress(AddressDTO address);
+    AddressDTO saveAddress(AddressDTO address);
 }

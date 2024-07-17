@@ -9,10 +9,10 @@ import java.sql.SQLException;
 @Getter
 public class MySqlConnection {
     private static MySqlConnection instance;
-    private Connection connection;
-    private String jdbcURL ="jdbc:mysql://localhost:3306/demo_dao";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "DB14!";
+    private final Connection connection;
+    private final String jdbcURL ="jdbc:mysql://localhost:3306/demo_dao";
+    private final String jdbcUsername = "root";
+    private final String jdbcPassword = "DB14!";
 
     private MySqlConnection() throws SQLException {
         try {

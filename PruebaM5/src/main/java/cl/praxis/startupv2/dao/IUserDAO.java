@@ -6,11 +6,10 @@ import java.util.List;
 
 public interface IUserDAO {
 
-    public UserDTO getUserById(int id);
-    public UserDTO getUserByEmail(String email);
-    public List<UserDTO> getAllUsersData();
-    public UserDTO createUser(UserDTO user);
-    public boolean updateUser(UserDTO user);
-    public boolean deleteUser(int id);
+    UserDTO getUserById(int id);
+    UserDTO getUserByEmail(String email);
+    List<UserDTO> getAllUsersData();
+    UserDTO createUser(UserDTO user);
+    void updateCar(int id, int userId);
 
 }

@@ -17,4 +17,4 @@ public class AddressServiceImpl implements IAddressService {
     public AddressDTO saveAddress(AddressDTO address) {
         return addressDAO.addAddress(address);
     }
-};
+}

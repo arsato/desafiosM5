@@ -14,8 +14,4 @@ public class AddressDTO {
     private String addressNumber;
     private int userId;
 
-    public AddressDTO(String addressName, String addressNumber) {
-        this.addressName = addressName;
-        this.addressNumber = addressNumber;
-    }
 }

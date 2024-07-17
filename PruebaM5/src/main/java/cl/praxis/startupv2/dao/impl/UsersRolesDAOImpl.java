@@ -2,8 +2,6 @@ package cl.praxis.startupv2.dao.impl;
 
 import cl.praxis.startupv2.connection.MySqlConnection;
 import cl.praxis.startupv2.dao.IUsersRolesDAO;
-import cl.praxis.startupv2.model.RoleDTO;
-import cl.praxis.startupv2.model.UserDTO;
 import cl.praxis.startupv2.model.UsersRolesDTO;
 
 import java.sql.Connection;

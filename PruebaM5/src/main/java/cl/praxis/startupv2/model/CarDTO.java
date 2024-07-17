@@ -13,9 +13,4 @@ public class CarDTO {
     private String name;
     private String imageUrl;
 
-    public CarDTO(String name, String imageUrl) {
-        this.name = name;
-        this.imageUrl = imageUrl;
-    }
-
 }

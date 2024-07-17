@@ -24,15 +24,4 @@ public class UserDTO {
     private RoleDTO role;
     private CarDTO car;
 
-    public UserDTO(String email, String nick, String name, String password, int weight, int carId, AddressDTO address, RoleDTO role) {
-        this.email = email;
-        this.nick = nick;
-        this.name = name;
-        this.password = password;
-        this.weight = weight;
-        this.carId = carId;
-        this.address = address;
-        this.role = role;
-    }
-
 }

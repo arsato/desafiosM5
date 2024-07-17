@@ -30,8 +30,9 @@ public class LoginServlet extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             if (user.getPassword().equals(password)) {
-                if(user.getRole().getName().equals("administrador")){
+                if(user.getRole().getName().equals("admin")){
                     List<UserDTO> usersList = userService.getAllUsersData();
+                    System.out.println(usersList);
                     request.setAttribute("user", user);
                     request.setAttribute("listUsers", usersList);
                     request.getRequestDispatcher("home.jsp").forward(request, response);

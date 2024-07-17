@@ -32,7 +32,17 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public UserDTO getUserById(int id) {
+        return userDAO.getUserById(id);
+    }
+
+    @Override
     public List<UserDTO> getAllUsersData() {
        return userDAO.getAllUsersData();
+    }
+
+    @Override
+    public void updateCar(int id, int userId) {
+        userDAO.updateCar(id, userId);
     }
 }

@@ -24,9 +24,6 @@
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Id
-                    </th>
-                    <th scope="col" class="px-6 py-3">
                         Correo
                     </th>
                     <th scope="col" class="px-6 py-3">
@@ -52,9 +49,6 @@
                 <tbody>
                 <c:forEach var="user" items="${listUsers}">
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                ${user.id}
-                        </th>
                         <td class="px-6 py-4">
                                 ${user.email}
                         </td>
@@ -71,8 +65,26 @@
                                 ${user.address.addressName} - ${user.address.addressNumber}
                         </td>
                         <td class="px-6 py-4">
-                            <img class="max-h-16 rounded-lg" src="${user.car.imageUrl}" alt="Jese image">
-                            ${user.car.name}
+                            <c:if test="${user.car.id != 1}">
+                                <div class="flex flex-col items-center mb-2">
+                                    <img class="max-h-16 rounded-lg" src="${user.car.imageUrl}" alt="Car image">
+                                </div>
+                            </c:if>
+                            <form name="carForm${user.id}" action="carselect" method="post">
+                                <select id="carSelect${user.id}" name="carSelect" class="border text-sm rounded-lg block w-full p-2.5"
+                                        onchange="
+                                                let text = document.getElementById('carSelect${user.id}').options[selectedIndex].innerHTML;
+                                                let res = confirm('Desea cambiar el vehiculo para el usuario ${user.name} por '.concat(text))
+                                                if(res){
+                                                    document.carForm${user.id}.submit();
+                                                }else{
+                                                    document.getElementById('carSelect${user.id}').selectedIndex = ${user.car.id}-1;
+                                                }">
+                                    <option value="${user.id}-1" ${user.car.id == 1 || user.car.id == null ? 'selected' : ''}>Sin Automovil</option>
+                                    <option value="${user.id}-2" ${user.car.id == 2 ? 'selected' : ''}>Hyundai Sonata</option>
+                                    <option value="${user.id}-3" ${user.car.id == 3 ? 'selected' : ''}>Audi S7</option>
+                                </select>
+                            </form>
                         </td>
                         <td class="px-6 py-4">
                                 ${user.role.name}

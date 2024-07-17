@@ -6,9 +6,13 @@ import java.util.List;
 
 public interface IUserService {
 
-    public UserDTO createUser(UserDTO user);
+    UserDTO createUser(UserDTO user);
 
-    public UserDTO verifyUser(String email);
+    UserDTO verifyUser(String email);
 
-    public List<UserDTO> getAllUsersData();
+    UserDTO getUserById(int id);
+
+    List<UserDTO> getAllUsersData();
+
+    void updateCar(int id, int userId);
 }

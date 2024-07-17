@@ -23,13 +23,13 @@
                   class="w-auto rounded-xl drop-shadow border-gray-700 bg-gray-800 p-8 text-lg">
                 <div class="flex flex-col">
                     <input class="${message == 'mail not found' ? 'rounded-xl border-2 border-rose-500 p-4 pl-6' : 'rounded-xl p-4 pl-6'}"
-                           value="ariel@mail.com" type="email" id="email" name="email" placeholder="Email"
+                           value="admin@mail.com" type="email" id="email" name="email" placeholder="Email"
                            autocomplete="email" required>
                     <c:if test="${message == 'mail not found'}">
                         <p class="text-rose-500 font-semibold text-sm">¡Correo inválido!</p>
                     </c:if>
                     <input class="${message == 'wrong password' ? 'rounded-xl border-2 border-rose-500 p-4 pl-6 mt-5' : 'rounded-xl p-4 pl-6 mt-5'}"
-                           type="password" id="password" name="password" placeholder="Contraseña" required>
+                           value="1234" type="password" id="password" name="password" placeholder="Contraseña" required>
                     <c:if test="${message == 'wrong password'}">
                         <p class="text-rose-500 font-semibold text-sm">¡Contraseña Incorrecta!</p>
                     </c:if>
